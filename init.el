@@ -77,6 +77,19 @@
 ;; flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
+(defun cpp-compile-and-run ()
+  "Quick compile & run command for single cpp files"
+  (interactive)
+  
+  (let ((f (file-name-base
+	    (buffer-file-name
+	     (window-buffer (minibuffer-selected-window))
+	     ))))
+    
+    (compile (format "make %s && ./%s < %s.in" f f f)))
+)
+(define-key c-mode-base-map [f9] 'cpp-compile-and-run)
+
 ;; specific local settings
 (when (file-exists-p "~/.emacs.d/local-settings.el")
   (load-file "~/.emacs.d/local-settings.el"))
