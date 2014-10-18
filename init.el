@@ -1,8 +1,6 @@
-;; Initialize packages before:
+;;; Initialize packages before:
 (setq package-enable-at-startup nil)
 (package-initialize)
-
-(setq load-path (cons "~/.emacs.local" load-path))
 
 (require 'cc-mode)
 
@@ -23,8 +21,17 @@
 ;; Remove toolbar
 (tool-bar-mode -1)
 
+;; No initial screen
+(setq-default inhibit-startup-screen t)
+
+;; Clear scratch buffer
+(setq-default initial-scratch-message nil)
+
+;; yes or no becomes y or n
+(defalias 'yes-or-no-p 'y-or-n-p)
+
 ;; Turn off word wrapping
-(setq-default truncate-lines 1)
+;; (setq-default truncate-lines 1)
 
 ;; Auto linum-mode
 (global-linum-mode 1)
@@ -55,11 +62,8 @@
 ;; auto-complete-clang
 (require 'auto-complete-clang)
 (define-key c-mode-base-map [(control tab)] 'ac-complete-clang)
-;(defun my-ac-cc-mode-setup ()
-;  (setq ac-sources (append '(ac-source-clang ac-source-yasnippet) ac-sources)))
-;(add-hook 'c-mode-common-hook 'my-ac-cc-mode-setup)
-;; PgDown/PgUp bindings:
 
+;; 'PgDown/PgUp' bindings:
 (require 'smartrep)
 (smartrep-define-key
     global-map "C-c" '(("n" . (scroll-up-command))
@@ -77,6 +81,13 @@
 ;; flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
+;; flycheck-pyflakes
+(require 'flycheck-pyflakes)
+(add-hook 'python-mode-hook 'flycheck-mode)
+(add-to-list 'flycheck-disabled-checkers 'python-flake8)
+(add-to-list 'flycheck-disabled-checkers 'python-pylint)
+
+;; Custom quick c++ compile
 (defun cpp-compile-and-run ()
   "Quick compile & run command for single cpp files"
   (interactive)

@@ -3,3 +3,6 @@
 /elpa/archives
 /auto-save-list
 local-settings.el
+ac-comphist.dat
+ede-projects.el
+/eshell
