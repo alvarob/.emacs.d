@@ -101,6 +101,11 @@
 )
 (define-key c-mode-base-map [f9] 'cpp-compile-and-run)
 
+;; pretty lambdas
+(require 'pretty-lambdada)
+(pretty-lambda-for-modes)
+(add-hook 'python-mode-hook 'turn-on-pretty-lambda-mode)
+
 ;; specific local settings
 (when (file-exists-p "~/.emacs.d/local-settings.el")
   (load-file "~/.emacs.d/local-settings.el"))
