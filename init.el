@@ -74,6 +74,9 @@
 (setq org-log-done t)
 (setq org-agenda-files (list "~/alvr-org/"))
 
+;; flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
 ;; specific local settings
 (when (file-exists-p "~/.emacs.d/local-settings.el")
   (load-file "~/.emacs.d/local-settings.el"))
