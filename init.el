@@ -2,7 +2,11 @@
 (setq package-enable-at-startup nil)
 (package-initialize)
 
-;; For pt-Br dead keys to work
+(setq load-path (cons "~/.emacs.local" load-path))
+
+(require 'cc-mode)
+
+;; pt-Br dead keys to work
 (require 'iso-transl)
 ;; Set encoding
 (prefer-coding-system 'utf-8)
@@ -50,10 +54,12 @@
 
 ;; auto-complete-clang
 (require 'auto-complete-clang)
-(setq ac-sources (append '(ac-source-clang) ac-sources))
-
-
+(define-key c-mode-base-map [(control tab)] 'ac-complete-clang)
+;(defun my-ac-cc-mode-setup ()
+;  (setq ac-sources (append '(ac-source-clang ac-source-yasnippet) ac-sources)))
+;(add-hook 'c-mode-common-hook 'my-ac-cc-mode-setup)
 ;; PgDown/PgUp bindings:
+
 (require 'smartrep)
 (smartrep-define-key
     global-map "C-c" '(("n" . (scroll-up-command))
@@ -67,3 +73,7 @@
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
 (setq org-agenda-files (list "~/alvr-org/"))
+
+;; specific local settings
+(when (file-exists-p "~/.emacs.d/local-settings.el")
+  (load-file "~/.emacs.d/local-settings.el"))
