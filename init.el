@@ -2,8 +2,6 @@
 (setq package-enable-at-startup nil)
 (package-initialize)
 
-(require 'cc-mode)
-
 ;; pt-Br dead keys to work
 (require 'iso-transl)
 ;; Set encoding
@@ -31,10 +29,13 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; Turn off word wrapping
-;; (setq-default truncate-lines 1)
+(setq-default truncate-lines 1)
 
 ;; Auto linum-mode
 (global-linum-mode 1)
+
+;; Auto paren-mode
+(show-paren-mode 1)
 
 ;; Theme
 (load-theme 'zenburn t)
@@ -59,10 +60,6 @@
 (ac-set-trigger-key "TAB")
 (ac-set-trigger-key "<tab>")
 
-;; auto-complete-clang
-(require 'auto-complete-clang)
-(define-key c-mode-base-map [(control tab)] 'ac-complete-clang)
-
 ;; 'PgDown/PgUp' bindings:
 (require 'smartrep)
 (smartrep-define-key
@@ -81,31 +78,11 @@
 ;; flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
-;; flycheck-pyflakes
-(require 'flycheck-pyflakes)
-(add-hook 'python-mode-hook 'flycheck-mode)
-(add-to-list 'flycheck-disabled-checkers 'python-flake8)
-(add-to-list 'flycheck-disabled-checkers 'python-pylint)
-
-;; Custom quick c++ compile
-(defun cpp-compile-and-run ()
-  "Quick compile & run command for single cpp files"
-  (interactive)
-  
-  (let ((f (file-name-base
-	    (buffer-file-name
-	     (window-buffer (minibuffer-selected-window))
-	     ))))
-    
-    (compile (format "make %s && ./%s < %s.in" f f f)))
-)
-(define-key c-mode-base-map [f9] 'cpp-compile-and-run)
-
-;; pretty lambdas
-(require 'pretty-lambdada)
-(pretty-lambda-for-modes)
-(add-hook 'python-mode-hook 'turn-on-pretty-lambda-mode)
+(load-file "~/.emacs.d/cpp.el")
+(load-file "~/.emacs.d/py.el")
 
 ;; specific local settings
 (when (file-exists-p "~/.emacs.d/local-settings.el")
   (load-file "~/.emacs.d/local-settings.el"))
+
+
