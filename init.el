@@ -80,6 +80,7 @@
 
 (load-file "~/.emacs.d/cpp.el")
 (load-file "~/.emacs.d/py.el")
+(load-file "~/.emacs.d/haskell.el")
 
 ;; specific local settings
 (when (file-exists-p "~/.emacs.d/local-settings.el")
