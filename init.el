@@ -13,11 +13,18 @@
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
+
+
+;; Custom theme path
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+
+
 ;; Activate cua mode
 (cua-mode t)
 
 ;; Remove toolbar
 (tool-bar-mode -1)
+(menu-bar-mode -1)
 
 ;; No initial screen
 (setq-default inhibit-startup-screen t)
@@ -29,7 +36,7 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; Turn off word wrapping
-(setq-default truncate-lines 1)
+;;(setq-default truncate-lines 1)
 
 ;; Auto linum-mode
 (global-linum-mode 1)
@@ -37,13 +44,10 @@
 ;; Auto paren-mode
 (show-paren-mode 1)
 
-;; Theme
-(load-theme 'zenburn t)
-
 ;; yasnippet
 ;; should be loaded before auto complete so that they can work together
 (require 'yasnippet)
-(yas-global-mode 1)
+(yas-global-mode 1)(tool-bar-mode -1)
 
 ;; Fix yasnippet 0.8/ac bug
 (defalias 'yas/get-snippet-tables 'yas--get-snippet-tables)
@@ -73,7 +77,7 @@
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
-(setq org-agenda-files (list "~/alvr-org/"))
+(setq org-agenda-files (list "~/.org/"))
 
 ;; flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
