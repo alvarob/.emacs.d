@@ -24,7 +24,6 @@
 ;; Custom theme path
 ;; add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
-
 ;; Activate cua mode
 (cua-mode t)
 
@@ -87,6 +86,7 @@
 ;; flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
+;; Web mode
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (setq web-mode-enable-current-element-highlight t)
