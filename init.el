@@ -22,8 +22,9 @@
 ;; No initial screen
 (setq-default inhibit-startup-screen t)
 
-;; Clear scratch buffer
-(setq-default initial-scratch-message nil)
+;; Setup scratch buffer
+(setq-default initial-scratch-message "# coding: utf-8\n")
+(setq initial-major-mode 'python-mode)
 
 ;; yes or no becomes y or n
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -81,8 +82,20 @@
 (load-file "~/.emacs.d/cpp.el")
 (load-file "~/.emacs.d/py.el")
 
+
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(setq web-mode-enable-current-element-highlight t)
+(defun my-web-mode-hook () 
+  "Hooks for Web mode." 
+  (setq web-mode-enable-auto-pairing t)) 
+(add-hook 'web-mode-hook 'my-web-mode-hook)
+
+(require 'zencoding-mode)
+(add-hook 'sgml-mode-hook 'zencoding-mode)
+(add-hook 'web-mode-hook 'zencoding-mode)
+
 ;; specific local settings
 (when (file-exists-p "~/.emacs.d/local-settings.el")
   (load-file "~/.emacs.d/local-settings.el"))
-
 
