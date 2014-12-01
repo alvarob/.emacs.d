@@ -1,8 +1,6 @@
 ;; flycheck-pyflakes
-(require 'flycheck-pyflakes)
+(require 'flycheck)
 (add-hook 'python-mode-hook 'flycheck-mode)
-(add-to-list 'flycheck-disabled-checkers 'python-flake8)
-(add-to-list 'flycheck-disabled-checkers 'python-pylint)
 
 ;; pretty lambdas
 (require 'pretty-lambdada)
