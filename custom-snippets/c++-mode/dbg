@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Quick cout debug
+# key: dbg
+# --
+cout << "Debug: " << ${1:1} << "\n" << endl;

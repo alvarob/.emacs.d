@@ -1,4 +1,4 @@
 .emacs.d
 ========
 
-My .emacs.d stack
+My emacs configuration
