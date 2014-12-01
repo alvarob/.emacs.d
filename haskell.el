@@ -5,4 +5,4 @@
 (custom-set-variables
   '(haskell-process-type 'ghci))
 
- (setq haskell-font-lock-symbols t)
+; (setq haskell-font-lock-symbols t)

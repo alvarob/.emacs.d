@@ -9,10 +9,16 @@
 (setq coding-system-for-read 'utf-8)
 (setq coding-system-for-write 'utf-8)
 
+;; specific local settings
+(when (file-exists-p "~/.emacs.d/local-settings.el")
+  (load-file "~/.emacs.d/local-settings.el"))
+
+
 ;; Repos
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+(setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")
+			 ("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+                         ))
 
 
 ;; Custom theme path
@@ -82,12 +88,11 @@
 ;; flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
+;; pretty lambdas
+(require 'pretty-lambdada)
+(pretty-lambda-for-modes)
+(add-hook 'python-mode-hook 'turn-on-pretty-lambda-mode)
+
+;; Language specific configuration
 (load-file "~/.emacs.d/cpp.el")
-(load-file "~/.emacs.d/py.el")
 (load-file "~/.emacs.d/haskell.el")
-
-;; specific local settings
-(when (file-exists-p "~/.emacs.d/local-settings.el")
-  (load-file "~/.emacs.d/local-settings.el"))
-
-
