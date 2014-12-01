@@ -22,7 +22,7 @@
 
 
 ;; Custom theme path
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+;; add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
 
 ;; Activate cua mode
@@ -56,11 +56,6 @@
 (setq yas-snippet-dirs (append yas-snippet-dirs
                                '("~/.emacs.d/custom-snippets")))
 (yas-global-mode 1)
-(tool-bar-mode -1)
-
-;; Fix yasnippet 0.8/ac bug
-(defalias 'yas/get-snippet-tables 'yas--get-snippet-tables)
-(defalias 'yas/table-hash 'yas--table-hash)
 
 ;; auto complete mode
 ;; should be loaded after yasnippet so that they can work together
