@@ -85,6 +85,8 @@
 
 ;; flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(define-key global-map "\C-c[" 'flycheck-previous-error)
+(define-key global-map "\C-c]" 'flycheck-next-error)
 
 ;; Web mode
 (require 'web-mode)
@@ -94,6 +96,7 @@
   "Hooks for Web mode." 
   (setq web-mode-enable-auto-pairing t)) 
 (add-hook 'web-mode-hook 'my-web-mode-hook)
+;(setq web-mode-engines-alist '(("django" . "\\.html\\'")))
 
 (require 'zencoding-mode)
 (add-hook 'sgml-mode-hook 'zencoding-mode)
