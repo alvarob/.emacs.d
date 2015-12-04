@@ -22,7 +22,7 @@
 
 
 ;; Custom theme path
-;; add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
 ;; Activate cua mode
 (cua-mode t)
@@ -42,7 +42,7 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; Turn off word wrapping
-;;(setq-default truncate-lines 1)
+;; (setq-default truncate-lines 1)
 
 ;; Auto linum-mode
 (global-linum-mode 1)
@@ -83,7 +83,7 @@
 (setq org-log-done t)
 (setq org-agenda-files (list "~/.org/"))
 
-;; flycheck
+;; flycheck keybindings
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (define-key global-map "\C-c[" 'flycheck-previous-error)
 (define-key global-map "\C-c]" 'flycheck-next-error)
@@ -101,6 +101,22 @@
 (require 'zencoding-mode)
 (add-hook 'sgml-mode-hook 'zencoding-mode)
 (add-hook 'web-mode-hook 'zencoding-mode)
+
+
+;; YAML
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+
+(require 'flymake-yaml)
+(add-hook 'yaml-mode-hook 'flymake-yaml-load)
+
+
+;; Markdown
+(autoload 'markdown-mode "markdown-mode"
+       "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
 
 ;; pretty lambdas
 (require 'pretty-lambdada)

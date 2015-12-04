@@ -18,6 +18,6 @@
 	     (window-buffer (minibuffer-selected-window))
 	     ))))
     
-    (compile (format "g++ -o %s -Wall %s.cpp && ./%s < %s.in" f f f f)))
+    (compile (format "g++ -o %s -Wall -Wextra -pedantic -std=c++11 -O2 -Wshadow -Wformat=2 -Wfloat-equal -Wconversion -Wlogical-op -Wcast-qual -Wcast-align -fwhole-program -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC -lmcheck -D_FORTIFY_SOURCE=2 -fsanitize=address -fsanitize=undefined -fstack-protector %s.cpp && ./%s < %s.in" f f f f)))
 )
 (define-key c-mode-base-map [f9] 'cpp-compile-and-run)
